@@ -2734,6 +2734,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gather-pull-request-metadata@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "gather-pull-request-metadata@workspace:."
+  dependencies:
+    "@actions/core": 1.10.0
+    "@actions/github": 5.1.1
+    "@octokit/rest": 19.0.7
+    "@probot/adapter-github-actions": 3.1.3
+    "@types/node": 18.11.19
+    "@typescript-eslint/eslint-plugin": 5.50.0
+    "@typescript-eslint/parser": 5.50.0
+    "@vercel/ncc": 0.36.1
+    "@vitest/coverage-c8": 0.28.4
+    class-validator: ^0.14.0
+    eslint: 8.33.0
+    eslint-plugin-prettier: 4.2.1
+    js-yaml: 4.1.0
+    nock: 13.3.0
+    prettier: 2.8.3
+    ts-node: 10.9.1
+    typescript: 4.9.5
+    vitest: 0.28.4
+  languageName: unknown
+  linkType: soft
+
 "gauge@npm:^4.0.3":
   version: 4.0.4
   resolution: "gauge@npm:4.0.4"
@@ -5116,31 +5141,6 @@ __metadata:
   checksum: 2c8e47675d55f8b4e404bcf529abdf5036c537a04c2b20177bcf78c9e3c1da69da3942b1346e6edb09e823228c0ee656ef0e033765ec39a70d496ef601a0c657
   languageName: node
   linkType: hard
-
-"typescript-action@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "typescript-action@workspace:."
-  dependencies:
-    "@actions/core": 1.10.0
-    "@actions/github": 5.1.1
-    "@octokit/rest": 19.0.7
-    "@probot/adapter-github-actions": 3.1.3
-    "@types/node": 18.11.19
-    "@typescript-eslint/eslint-plugin": 5.50.0
-    "@typescript-eslint/parser": 5.50.0
-    "@vercel/ncc": 0.36.1
-    "@vitest/coverage-c8": 0.28.4
-    class-validator: ^0.14.0
-    eslint: 8.33.0
-    eslint-plugin-prettier: 4.2.1
-    js-yaml: 4.1.0
-    nock: 13.3.0
-    prettier: 2.8.3
-    ts-node: 10.9.1
-    typescript: 4.9.5
-    vitest: 0.28.4
-  languageName: unknown
-  linkType: soft
 
 "typescript@npm:4.9.5":
   version: 4.9.5
