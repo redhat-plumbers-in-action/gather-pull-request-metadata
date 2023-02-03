@@ -1,16 +1,29 @@
 ---
 
-name: 'Your name here'
+name: Gather Pull Request Metadata
+description: Gather useful publicly available information about Pull Request and provided in easy to digest JSON format.
 
-description: 'Provide a description here'
+branding:
+  icon: box
+  color: blue
 
-author: 'Your name or organization here'
+author: Jan Macků <jamacku@redhat.com>
 
 inputs:
-  milliseconds: # change this
+  metadata-file-name:
+    required: false
+    default: pr-metadata.json
+    description: Name of file where Pull Request metadata will be saved.
+  token:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    default: ${{ github.token }}
+    description: GitHub token used to set issue labels.
+
+outputs:
+  metadata:
+    description: Pull Request metadata in JSON format. Use fromJSON() to parse string back to JSON.
+  metadata-file:
+    description: Path to file containing Pull Request metadata in JSON format. Useful when uploading as artifact.
 
 runs:
   using: 'node16'

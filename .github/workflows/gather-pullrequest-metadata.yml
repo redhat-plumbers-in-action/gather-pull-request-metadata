@@ -3,6 +3,7 @@
 name: Gather Pull Request Metadata
 on:
   pull_request:
+    types: [ opened, reopened, synchronize ]
 
 permissions:
   contents: read
@@ -19,10 +20,14 @@ jobs:
         name: Gather Pull Request Metadata
         uses: ./
 
+      - name: Log Pull Request Metadata
+        run: |
+          echo "::warning::${{ steps.Metadata.outputs.metadata }}"
+
       - name: Upload artifact with gathered metadata
         uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce
         with:
           name: Pull Request Metadata
-          path: ${{ steps.Metadata.outputs.metadata }}
+          path: ${{ steps.Metadata.outputs.metadata-file }}
 
 ...
