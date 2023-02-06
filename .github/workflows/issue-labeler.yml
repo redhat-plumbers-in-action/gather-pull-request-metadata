@@ -20,7 +20,8 @@ jobs:
         template: [ issue-template.yml ]
 
     steps:
-      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
+      - name: Repository checkout
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
 
       - name: Parse issue form
         uses: stefanbuck/github-issue-parser@96f2b64808e8d528b0d06a67b98db39335861a79
