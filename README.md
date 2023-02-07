@@ -51,6 +51,9 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
+      # for ability to read PR comments
+      issues: read
+      pull-requests: read
       # only required for workflows in private repositories
       actions: read
       contents: read
@@ -106,7 +109,7 @@ Token used to access GitHub API. Read permissions are sufficient.
 
 * default value: `${{ github.token }}`
 * requirements: `required`
-* recomended value: `secrets.GITHUB_TOKEN`
+* recommended value: `secrets.GITHUB_TOKEN`
 
 ## Outputs
 
