@@ -1,4 +1,5 @@
 import { Context } from 'probot';
+import { Commit } from './commit';
 
 import { events } from './events';
 
@@ -8,11 +9,13 @@ export class PullRequest {
   readonly number: PullRequestT['number'];
   readonly labels: PullRequestT['labels'];
   readonly milestone: PullRequestT['milestone'];
+  readonly commits: PullRequestT['commits'];
 
   private constructor(data: PullRequestT) {
     this.number = data?.number;
     this.labels = data?.labels;
     this.milestone = data?.milestone;
+    this.commits = data?.commits;
   }
 
   getMetadata(): PullRequestT {
@@ -20,6 +23,7 @@ export class PullRequest {
       number: this.number,
       labels: this.labels,
       milestone: this.milestone,
+      commits: this.commits,
     };
   }
 
@@ -38,6 +42,9 @@ export class PullRequest {
         };
       }),
       milestone: { title: pull_request.milestone?.title },
+      commits: (
+        await context.octokit.pulls.listCommits(context.pullRequest())
+      ).data.map(commit => new Commit(commit)),
     });
   }
 }

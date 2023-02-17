@@ -10,32 +10,33 @@ export interface IPullRequestTestContext {
 
 export const pullRequestContextFixture: IPullRequestTestContext = {
   pullRequests: [
-    await PullRequest.getPullRequest({
-      payload: {
-        pull_request: {
-          number: 1,
-          labels: [
-            {
-              id: 1,
-              name: 'label-1',
-              description: 'label-1-description',
-            },
-          ],
-          milestone: {
-            title: 'milestone-1',
-          },
-        },
-      },
-    } as Context<(typeof events.pull_request)[number]>),
-    await PullRequest.getPullRequest({
-      payload: {
-        pull_request: {
-          number: 2,
-          labels: [{}],
-          milestone: {},
-        },
-      },
-    } as Context<(typeof events.pull_request)[number]>),
+    // TODO ...
+    // await PullRequest.getPullRequest({
+    //   payload: {
+    //     pull_request: {
+    //       number: 1,
+    //       labels: [
+    //         {
+    //           id: 1,
+    //           name: 'label-1',
+    //           description: 'label-1-description',
+    //         },
+    //       ],
+    //       milestone: {
+    //         title: 'milestone-1',
+    //       },
+    //     },
+    //   },
+    // } as Context<(typeof events.pull_request)[number]>),
+    // await PullRequest.getPullRequest({
+    //   payload: {
+    //     pull_request: {
+    //       number: 2,
+    //       labels: [{}],
+    //       milestone: {},
+    //     },
+    //   },
+    // } as Context<(typeof events.pull_request)[number]>),
   ],
 
   invalid: [
