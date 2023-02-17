@@ -8,4 +8,16 @@ export type PullRequestT = {
   milestone: {
     title: string | undefined;
   } | null;
+  commits: CommitT[];
+};
+
+export type CommitT = {
+  sha: string;
+  message: {
+    title: string;
+    body: string;
+    cherryPick: {
+      sha: string;
+    }[];
+  };
 };
