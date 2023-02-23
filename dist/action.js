@@ -5,7 +5,7 @@ import { PullRequest } from './pull-request';
 const action = (probot) => {
     probot.on(events.pull_request, async (context) => {
         const pullRequest = await PullRequest.getPullRequest(context);
-        const metadataJson = JSON.stringify(pullRequest.getMetadata());
+        const metadataJson = JSON.stringify(pullRequest.getMetadata(), null, 2);
         const metadataFile = getInput('metadata-file-name');
         setOutput('metadata', metadataJson);
         setOutput('metadata-file', metadataFile);
