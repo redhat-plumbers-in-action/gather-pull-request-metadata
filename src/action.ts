@@ -12,7 +12,7 @@ const action = (probot: Probot) => {
     async (context: Context<(typeof events.pull_request)[number]>) => {
       const pullRequest = await PullRequest.getPullRequest(context);
 
-      const metadataJson = JSON.stringify(pullRequest.getMetadata());
+      const metadataJson = JSON.stringify(pullRequest.getMetadata(), null, 2);
       const metadataFile = getInput('metadata-file-name');
 
       setOutput('metadata', metadataJson);
