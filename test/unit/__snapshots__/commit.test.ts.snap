@@ -1,0 +1,18 @@
+// Vitest Snapshot v1
+
+exports[`Commit Object > getCherryPicks() 1`] = `[]`;
+
+exports[`Commit Object > getCherryPicks() 2`] = `
+[
+  {
+    "sha": "12345",
+  },
+  {
+    "sha": "1234567890123456789012345678901234567890",
+  },
+]
+`;
+
+exports[`Commit Object > getTitle() 1`] = `"message-1"`;
+
+exports[`Commit Object > getTitle() 2`] = `"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ..."`;
