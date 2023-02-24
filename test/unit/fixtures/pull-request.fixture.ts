@@ -1,5 +1,5 @@
-import { Context } from 'probot';
-import { events } from '../../../src/events';
+// import { Context } from 'probot';
+// import { events } from '../../../src/events';
 
 import { PullRequest } from '../../../src/pull-request';
 
