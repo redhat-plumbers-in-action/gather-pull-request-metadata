@@ -116,7 +116,21 @@ GitHub Action exposes following [outputs](https://docs.github.com/en/actions/usi
   ],
   "milestone": {
     "title": "next-release"
-  }
+  },
+  "commits": [
+    {
+      "sha": "dbb9ff194039a1e1567cb48e7261ee1a94d1b9f0",
+      "message": {
+        "title": "test: add tests for commit functionality",
+        "body": "test: add tests for commit functionality",
+        "cherryPick": [
+          {
+            "sha": "dbb9ff194039a1e1567cb48e7261ee1a94d1b9f0",
+          }
+        ]
+      }
+    }
+  ]
 }
 ```
 
