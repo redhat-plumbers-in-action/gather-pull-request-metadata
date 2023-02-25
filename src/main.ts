@@ -1,5 +1,7 @@
-import run from '@probot/adapter-github-actions';
 import { setFailed } from '@actions/core';
+import run from '@probot/adapter-github-actions';
+
+import '@total-typescript/ts-reset';
 
 import action from './action';
 
