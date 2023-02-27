@@ -21,8 +21,10 @@ jobs:
         uses: ./
 
       - name: Log Pull Request Metadata
+        env:
+          PR_METADATA: ${{ toJson(steps.Metadata.outputs.metadata) }}
         run: |
-          echo "::warning::${{ steps.Metadata.outputs.metadata }}"
+          echo -e "::warning::$PR_METADATA"
 
       - name: Upload artifact with gathered metadata
         uses: actions/upload-artifact@65d862660abb392b8c4a3d1195a2108db131dd05
