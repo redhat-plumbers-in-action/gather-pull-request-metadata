@@ -13,6 +13,7 @@ export type PullRequestT = {
 
 export type CommitT = {
   sha: string;
+  url: string;
   message: {
     title: string;
     body: string;

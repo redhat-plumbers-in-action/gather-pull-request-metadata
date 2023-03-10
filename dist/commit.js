@@ -2,18 +2,20 @@ import { z } from 'zod';
 // subset of Endpoints['GET /repos/{owner}/{repo}/commits']['response']['data'][number]
 const commitDataSchema = z.object({
     sha: z.string(),
+    html_url: z.string(),
     commit: z.object({
         message: z.string(),
     }),
 });
 export class Commit {
     constructor(data) {
-        commitDataSchema.parse(data);
-        this.sha = data.sha;
+        const parsedData = commitDataSchema.parse(data);
+        this.sha = parsedData.sha;
+        this.url = parsedData.html_url;
         this.message = {
-            title: this.getTitle(data.commit.message),
-            body: data.commit.message,
-            cherryPick: this.getCherryPicks(data.commit.message),
+            title: this.getTitle(parsedData.commit.message),
+            body: parsedData.commit.message,
+            cherryPick: this.getCherryPicks(parsedData.commit.message),
         };
     }
     /**

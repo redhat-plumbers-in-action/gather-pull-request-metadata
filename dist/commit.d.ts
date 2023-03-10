@@ -2,6 +2,7 @@ import { Endpoints } from '@octokit/types';
 import { CommitT } from './types';
 export declare class Commit {
     readonly sha: CommitT['sha'];
+    readonly url: CommitT['url'];
     readonly message: CommitT['message'];
     constructor(data: Endpoints['GET /repos/{owner}/{repo}/commits']['response']['data'][number]);
     /**
