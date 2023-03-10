@@ -11,10 +11,12 @@ export const commitContextFixture: ICommitTestContext = {
   commits: [
     new Commit({
       sha: 'sha-1',
+      html_url: 'url-1',
       commit: { message: 'message-1' },
     } as Endpoints['GET /repos/{owner}/{repo}/commits']['response']['data'][number]),
     new Commit({
       sha: 'sha-2',
+      html_url: 'url-2',
       commit: {
         message: `aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa_70
 

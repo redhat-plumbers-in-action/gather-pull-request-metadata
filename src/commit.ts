@@ -6,6 +6,7 @@ import { CommitT } from './types';
 // subset of Endpoints['GET /repos/{owner}/{repo}/commits']['response']['data'][number]
 const commitDataSchema = z.object({
   sha: z.string(),
+  html_url: z.string(),
   commit: z.object({
     message: z.string(),
   }),
@@ -13,18 +14,20 @@ const commitDataSchema = z.object({
 
 export class Commit {
   readonly sha: CommitT['sha'];
+  readonly url: CommitT['url'];
   readonly message: CommitT['message'];
 
   constructor(
     data: Endpoints['GET /repos/{owner}/{repo}/commits']['response']['data'][number]
   ) {
-    commitDataSchema.parse(data);
+    const parsedData = commitDataSchema.parse(data);
 
-    this.sha = data.sha;
+    this.sha = parsedData.sha;
+    this.url = parsedData.html_url;
     this.message = {
-      title: this.getTitle(data.commit.message),
-      body: data.commit.message,
-      cherryPick: this.getCherryPicks(data.commit.message),
+      title: this.getTitle(parsedData.commit.message),
+      body: parsedData.commit.message,
+      cherryPick: this.getCherryPicks(parsedData.commit.message),
     };
   }
 
