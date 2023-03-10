@@ -120,12 +120,13 @@ GitHub Action exposes following [outputs](https://docs.github.com/en/actions/usi
   "commits": [
     {
       "sha": "dbb9ff194039a1e1567cb48e7261ee1a94d1b9f0",
+      "url": "https://github.com/org/repo/commit/dbb9ff194039a1e1567cb48e7261ee1a94d1b9f0",
       "message": {
         "title": "test: add tests for commit functionality",
-        "body": "test: add tests for commit functionality",
+        "body": "test: add tests for commit functionality\n\n(cherry picked from commit f921f712da87c6a770de94138595a83c13d778b5)",
         "cherryPick": [
           {
-            "sha": "dbb9ff194039a1e1567cb48e7261ee1a94d1b9f0",
+            "sha": "f921f712da87c6a770de94138595a83c13d778b5",
           }
         ]
       }
