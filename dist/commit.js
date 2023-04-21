@@ -24,7 +24,7 @@ export class Commit {
     getTitle(message) {
         const TitleSize = 70;
         const slicedMsg = message.split(/\n/, 1)[0].slice(0, TitleSize);
-        return slicedMsg.length < TitleSize ? slicedMsg : `${slicedMsg} ...`;
+        return slicedMsg.length < TitleSize ? slicedMsg : `${slicedMsg}…`;
     }
     getCherryPicks(message) {
         const regexp = /\n\(cherry picked from commit (\b[0-9a-f]{5,40}\b)\) *\n?/g;

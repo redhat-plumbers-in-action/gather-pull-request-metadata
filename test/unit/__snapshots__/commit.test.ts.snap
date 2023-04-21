@@ -15,4 +15,4 @@ exports[`Commit Object > getCherryPicks() 2`] = `
 
 exports[`Commit Object > getTitle() 1`] = `"message-1"`;
 
-exports[`Commit Object > getTitle() 2`] = `"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ..."`;
+exports[`Commit Object > getTitle() 2`] = `"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa…"`;
