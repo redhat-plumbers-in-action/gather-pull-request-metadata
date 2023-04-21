@@ -38,7 +38,7 @@ export class Commit {
     const TitleSize = 70;
     const slicedMsg = message.split(/\n/, 1)[0].slice(0, TitleSize);
 
-    return slicedMsg.length < TitleSize ? slicedMsg : `${slicedMsg} ...`;
+    return slicedMsg.length < TitleSize ? slicedMsg : `${slicedMsg}…`;
   }
 
   getCherryPicks(message: string): CommitT['message']['cherryPick'] {
