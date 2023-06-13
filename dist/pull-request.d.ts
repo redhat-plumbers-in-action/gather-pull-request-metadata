@@ -1,5 +1,4 @@
-import { Context } from 'probot';
-import { events } from './events';
+import { Octokit } from '@octokit/core';
 import { PullRequestMetadata } from './schema';
 export declare class PullRequest {
     readonly number: PullRequestMetadata['number'];
@@ -8,5 +7,9 @@ export declare class PullRequest {
     readonly commits: PullRequestMetadata['commits'];
     private constructor();
     getMetadata(): PullRequestMetadata;
-    static getPullRequest(context: Context<(typeof events.pull_request)[number]>): Promise<PullRequest>;
+    static getPullRequest(octokit: Octokit, request: {
+        owner: string;
+        repo: string;
+        pull_number: number;
+    }): Promise<PullRequest>;
 }

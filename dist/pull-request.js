@@ -14,9 +14,10 @@ export class PullRequest {
             commits: this.commits,
         };
     }
-    static async getPullRequest(context) {
+    static async getPullRequest(octokit, request) {
         var _a;
-        const { pull_request } = context.payload;
+        const pull_request = (await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}', request)).data;
+        const commits = (await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}/commits', request)).data.map(commit => new Commit(commit));
         return new PullRequest({
             number: pull_request.number,
             labels: pull_request.labels.map(label => {
@@ -27,7 +28,7 @@ export class PullRequest {
                 };
             }),
             milestone: { title: (_a = pull_request.milestone) === null || _a === void 0 ? void 0 : _a.title },
-            commits: (await context.octokit.pulls.listCommits(context.pullRequest())).data.map(commit => new Commit(commit)),
+            commits,
         });
     }
 }

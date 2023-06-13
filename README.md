@@ -79,11 +79,19 @@ Action currently accepts the following options:
 
 - uses: redhat-plumbers-in-action/gather-pull-request-metadata@v1
   with:
+    pr-number: <pr number>
     metadata-file-name: <file name>
     token: <PAT or GITHUB_TOKEN>
 
 # ...
 ```
+
+### pr-number
+
+Number of Pull Request to gather metadata from.
+
+* default value: `${{ github.event.number }}`
+* requirements: `required`
 
 ### metadata-file-name
 
