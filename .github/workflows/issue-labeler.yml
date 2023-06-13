@@ -21,16 +21,16 @@ jobs:
 
     steps:
       - name: Repository checkout
-        uses: actions/checkout@f095bcc56b7c2baf48f3ac70d6d6782f4f553222
+        uses: actions/checkout@v3
 
       - name: Parse issue form
-        uses: stefanbuck/github-issue-parser@96f2b64808e8d528b0d06a67b98db39335861a79
+        uses: stefanbuck/github-issue-parser@v3
         id: issue-parser
         with:
           template-path: .github/ISSUE_TEMPLATE/${{ matrix.template }}
 
       - name: Set labels based on type input
-        uses: redhat-plumbers-in-action/advanced-issue-labeler@8ed038ae42158ffd94c467565e4648f46763b94d
+        uses: redhat-plumbers-in-action/advanced-issue-labeler@v2
         with:
           issue-form: ${{ steps.issue-parser.outputs.jsonString }}
           token: ${{ secrets.GITHUB_TOKEN }}
