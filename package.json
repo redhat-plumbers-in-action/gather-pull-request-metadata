@@ -39,7 +39,7 @@
     "@typescript-eslint/parser": "5.57.1",
     "@vercel/ncc": "0.36.1",
     "@vitest/coverage-c8": "0.28.5",
-    "eslint": "8.38.0",
+    "eslint": "8.42.0",
     "eslint-plugin-prettier": "4.2.1",
     "prettier": "2.8.8",
     "ts-node": "10.9.1",
