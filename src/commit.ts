@@ -1,7 +1,7 @@
 import { Endpoints } from '@octokit/types';
 import { z } from 'zod';
 
-import { CommitT } from './types';
+import { SingleCommitMetadata } from './schema';
 
 // subset of Endpoints['GET /repos/{owner}/{repo}/commits']['response']['data'][number]
 const commitDataSchema = z.object({
@@ -13,9 +13,9 @@ const commitDataSchema = z.object({
 });
 
 export class Commit {
-  readonly sha: CommitT['sha'];
-  readonly url: CommitT['url'];
-  readonly message: CommitT['message'];
+  readonly sha: SingleCommitMetadata['sha'];
+  readonly url: SingleCommitMetadata['url'];
+  readonly message: SingleCommitMetadata['message'];
 
   constructor(
     data: Endpoints['GET /repos/{owner}/{repo}/commits']['response']['data'][number]
@@ -41,7 +41,9 @@ export class Commit {
     return slicedMsg.length < TitleSize ? slicedMsg : `${slicedMsg}…`;
   }
 
-  getCherryPicks(message: string): CommitT['message']['cherryPick'] {
+  getCherryPicks(
+    message: string
+  ): SingleCommitMetadata['message']['cherryPick'] {
     const regexp = /\n\(cherry picked from commit (\b[0-9a-f]{5,40}\b)\) *\n?/g;
 
     const matches = [...message.matchAll(regexp)];

@@ -5,6 +5,24 @@ import '@total-typescript/ts-reset';
 
 import action from './action';
 
+import type {
+  CommitMetadata,
+  PullRequestMetadata,
+  SingleCommitMetadata,
+} from './schema';
+import {
+  commitMetadataSchema,
+  pullRequestMetadataSchema,
+  singleCommitMetadataSchema,
+} from './schema';
+
+export type { CommitMetadata, PullRequestMetadata, SingleCommitMetadata };
+export {
+  commitMetadataSchema,
+  pullRequestMetadataSchema,
+  singleCommitMetadataSchema,
+};
+
 try {
   await run.run(action);
 } catch (error) {
