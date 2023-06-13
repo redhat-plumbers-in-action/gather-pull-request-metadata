@@ -1,7 +1,7 @@
 {
   "name": "gather-pull-request-metadata",
-  "version": "1.0.0",
-  "description": "Gather useful publicly available information about GitHub Pull Request and provided in easy to digest JSON format",
+  "version": "1.2.2",
+  "description": "Gather useful publicly available information about GitHub Pull Request and provide it in easy-to-digest JSON format.",
   "author": "jamacku@redhat.com",
   "license": "MIT",
   "keywords": [
