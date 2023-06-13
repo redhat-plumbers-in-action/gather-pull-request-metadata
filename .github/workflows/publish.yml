@@ -1,0 +1,38 @@
+name: Publish package
+
+on:
+  release:
+    types: [ created ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@f095bcc56b7c2baf48f3ac70d6d6782f4f553222
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@869f4dd0c7f320ae834c2724d92a364de3893c24
+        with:
+          node-version: 18
+          cache: yarn
+          cache-dependency-path: yarn.lock
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install
+        run: yarn install
+
+      - name: Compile
+        run: yarn build
+
+      - name: Lint
+        run: yarn run lint
+
+      - name: Test
+        run: yarn test
+
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
