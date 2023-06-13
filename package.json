@@ -14,10 +14,6 @@
     "url": "git+https://github.com/redhat-plumbers-in-action/gather-pull-request-metadata.git"
   },
   "main": "src/main.ts",
-  "types": "src/types.d.ts",
-  "files": [
-    "src/types.d.ts"
-  ],
   "scripts": {
     "build": "tsc",
     "format": "prettier --write '**/*.ts'",

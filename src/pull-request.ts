@@ -2,23 +2,22 @@ import { Context } from 'probot';
 import { Commit } from './commit';
 
 import { events } from './events';
-
-import { PullRequestT } from './types';
+import { PullRequestMetadata } from './schema';
 
 export class PullRequest {
-  readonly number: PullRequestT['number'];
-  readonly labels: PullRequestT['labels'];
-  readonly milestone: PullRequestT['milestone'];
-  readonly commits: PullRequestT['commits'];
+  readonly number: PullRequestMetadata['number'];
+  readonly labels: PullRequestMetadata['labels'];
+  readonly milestone: PullRequestMetadata['milestone'];
+  readonly commits: PullRequestMetadata['commits'];
 
-  private constructor(data: PullRequestT) {
+  private constructor(data: PullRequestMetadata) {
     this.number = data?.number;
     this.labels = data?.labels;
     this.milestone = data?.milestone;
     this.commits = data?.commits;
   }
 
-  getMetadata(): PullRequestT {
+  getMetadata(): PullRequestMetadata {
     return {
       number: this.number,
       labels: this.labels,
