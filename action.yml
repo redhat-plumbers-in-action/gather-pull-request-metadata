@@ -10,6 +10,10 @@ branding:
 author: Jan Macků <jamacku@redhat.com>
 
 inputs:
+  pr-number:
+    required: true
+    default: ${{ github.event.number }}
+    description: Number of Pull Request to gather metadata from.
   metadata-file-name:
     required: false
     default: pr-metadata.json

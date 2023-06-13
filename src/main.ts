@@ -1,32 +1,37 @@
-import { setFailed } from '@actions/core';
-import run from '@probot/adapter-github-actions';
+import { getInput, setFailed } from '@actions/core';
+import { Octokit } from '@octokit/core';
+import { z } from 'zod';
 
 import '@total-typescript/ts-reset';
 
 import action from './action';
 
-import type {
-  CommitMetadata,
-  PullRequestMetadata,
-  SingleCommitMetadata,
-} from './schema';
-import {
-  commitMetadataSchema,
-  pullRequestMetadataSchema,
-  singleCommitMetadataSchema,
-} from './schema';
+const octokit = new Octokit({
+  auth: getInput('token', { required: true }),
+});
 
-export type { CommitMetadata, PullRequestMetadata, SingleCommitMetadata };
-export {
-  commitMetadataSchema,
-  pullRequestMetadataSchema,
-  singleCommitMetadataSchema,
-};
+const prNumber = +getInput('pr-number', { required: true });
+const metadataFileName = getInput('metadata-file-name', { required: true });
+
+const owner = z
+  .string()
+  .min(1)
+  .parse(process.env.GITHUB_REPOSITORY?.split('/')[0]);
+const repo = z
+  .string()
+  .min(1)
+  .parse(process.env.GITHUB_REPOSITORY?.split('/')[1]);
 
 try {
-  await run.run(action);
+  await action(octokit, { owner, repo, pull_number: prNumber });
 } catch (error) {
-  error instanceof Error
-    ? setFailed(error.message)
-    : setFailed(error as string);
+  let message: string;
+
+  if (error instanceof Error) {
+    message = error.message;
+  } else {
+    message = JSON.stringify(error);
+  }
+
+  setFailed(message);
 }

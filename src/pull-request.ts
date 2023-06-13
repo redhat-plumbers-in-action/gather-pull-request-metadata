@@ -1,7 +1,6 @@
-import { Context } from 'probot';
-import { Commit } from './commit';
+import { Octokit } from '@octokit/core';
 
-import { events } from './events';
+import { Commit } from './commit';
 import { PullRequestMetadata } from './schema';
 
 export class PullRequest {
@@ -27,9 +26,21 @@ export class PullRequest {
   }
 
   static async getPullRequest(
-    context: Context<(typeof events.pull_request)[number]>
+    octokit: Octokit,
+    request: { owner: string; repo: string; pull_number: number }
   ) {
-    const { pull_request } = context.payload;
+    const pull_request = (
+      await octokit.request(
+        'GET /repos/{owner}/{repo}/pulls/{pull_number}',
+        request
+      )
+    ).data;
+    const commits = (
+      await octokit.request(
+        'GET /repos/{owner}/{repo}/pulls/{pull_number}/commits',
+        request
+      )
+    ).data.map(commit => new Commit(commit));
 
     return new PullRequest({
       number: pull_request.number,
@@ -41,9 +52,7 @@ export class PullRequest {
         };
       }),
       milestone: { title: pull_request.milestone?.title },
-      commits: (
-        await context.octokit.pulls.listCommits(context.pullRequest())
-      ).data.map(commit => new Commit(commit)),
+      commits,
     });
   }
 }
