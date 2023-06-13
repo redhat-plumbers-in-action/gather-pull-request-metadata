@@ -27,10 +27,10 @@ jobs:
 
     steps:
       - name: Repository checkout
-        uses: actions/checkout@f095bcc56b7c2baf48f3ac70d6d6782f4f553222
+        uses: actions/checkout@v3
 
       - name: Use Node.js 18
-        uses: actions/setup-node@869f4dd0c7f320ae834c2724d92a364de3893c24
+        uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: yarn
@@ -53,7 +53,7 @@ jobs:
         id: diff
 
       # If index.js was different than expected, upload the expected version as an artifact
-      - uses: actions/upload-artifact@65d862660abb392b8c4a3d1195a2108db131dd05
+      - uses: actions/upload-artifact@v3
         if: ${{ failure() && steps.diff.conclusion == 'failure' }}
         with:
           name: dist

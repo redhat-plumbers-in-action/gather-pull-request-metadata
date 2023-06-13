@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Repository checkout
-        uses: actions/checkout@f095bcc56b7c2baf48f3ac70d6d6782f4f553222
+        uses: actions/checkout@v3
 
       - id: Metadata
         name: Gather Pull Request Metadata
@@ -27,7 +27,7 @@ jobs:
           echo -e "::warning::$PR_METADATA"
 
       - name: Upload artifact with gathered metadata
-        uses: actions/upload-artifact@65d862660abb392b8c4a3d1195a2108db131dd05
+        uses: actions/upload-artifact@v3
         with:
           name: Pull Request Metadata
           path: ${{ steps.Metadata.outputs.metadata-file }}
