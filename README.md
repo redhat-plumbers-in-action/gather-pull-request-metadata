@@ -117,6 +117,7 @@ GitHub Action exposes following [outputs](https://docs.github.com/en/actions/usi
 ```json
 {
   "number": 123,
+  "url": "https://github.com/org/repo/pull/123",
   "labels": [
     {
       "id": 123456789,

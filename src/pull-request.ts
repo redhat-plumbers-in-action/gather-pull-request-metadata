@@ -5,12 +5,14 @@ import { PullRequestMetadata } from './schema';
 
 export class PullRequest {
   readonly number: PullRequestMetadata['number'];
+  readonly url: PullRequestMetadata['url'];
   readonly labels: PullRequestMetadata['labels'];
   readonly milestone: PullRequestMetadata['milestone'];
   readonly commits: PullRequestMetadata['commits'];
 
   private constructor(data: PullRequestMetadata) {
     this.number = data?.number;
+    this.url = data?.url;
     this.labels = data?.labels;
     this.milestone = data?.milestone;
     this.commits = data?.commits;
@@ -19,6 +21,7 @@ export class PullRequest {
   getMetadata(): PullRequestMetadata {
     return {
       number: this.number,
+      url: this.url,
       labels: this.labels,
       milestone: this.milestone,
       commits: this.commits,
@@ -44,6 +47,7 @@ export class PullRequest {
 
     return new PullRequest({
       number: pull_request.number,
+      url: pull_request.html_url,
       labels: pull_request.labels.map(label => {
         return {
           id: label.id,

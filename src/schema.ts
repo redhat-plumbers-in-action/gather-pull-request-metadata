@@ -22,6 +22,7 @@ export type CommitMetadata = z.infer<typeof commitMetadataSchema>;
 
 export const pullRequestMetadataSchema = z.object({
   number: z.number(),
+  url: z.string().url(),
   labels: z.array(
     z.object({
       id: z.number(),
