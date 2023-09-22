@@ -13,6 +13,7 @@ export const singleCommitMetadataSchema = z.object({
 export const commitMetadataSchema = z.array(singleCommitMetadataSchema);
 export const pullRequestMetadataSchema = z.object({
     number: z.number(),
+    base: z.string(),
     url: z.string().url(),
     labels: z.array(z.object({
         id: z.number(),
