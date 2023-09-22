@@ -11271,6 +11271,7 @@ class Commit {
 class PullRequest {
     constructor(data) {
         this.number = data === null || data === void 0 ? void 0 : data.number;
+        this.url = data === null || data === void 0 ? void 0 : data.url;
         this.labels = data === null || data === void 0 ? void 0 : data.labels;
         this.milestone = data === null || data === void 0 ? void 0 : data.milestone;
         this.commits = data === null || data === void 0 ? void 0 : data.commits;
@@ -11278,6 +11279,7 @@ class PullRequest {
     getMetadata() {
         return {
             number: this.number,
+            url: this.url,
             labels: this.labels,
             milestone: this.milestone,
             commits: this.commits,
@@ -11289,6 +11291,7 @@ class PullRequest {
         const commits = (await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}/commits', request)).data.map(commit => new Commit(commit));
         return new PullRequest({
             number: pull_request.number,
+            url: pull_request.html_url,
             labels: pull_request.labels.map(label => {
                 return {
                     id: label.id,
