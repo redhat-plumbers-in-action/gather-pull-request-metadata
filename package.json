@@ -24,7 +24,7 @@
     "update-snapshots": "vitest run --update",
     "all": "yarn run build && yarn run format && yarn run lint && yarn run package && yarn test"
   },
-  "packageManager": "yarn@3.6.3",
+  "packageManager": "yarn@3.6.4",
   "dependencies": {
     "@actions/core": "1.10.0",
     "@octokit/core": "^4.2.1",
