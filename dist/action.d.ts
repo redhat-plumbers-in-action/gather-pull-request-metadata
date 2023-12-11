@@ -1,5 +1,5 @@
-import { Octokit } from '@octokit/core';
-declare function action(octokit: Octokit, request: {
+import { CustomOctokit } from './octokit';
+declare function action(octokit: CustomOctokit, request: {
     owner: string;
     repo: string;
     pull_number: number;

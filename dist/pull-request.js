@@ -21,7 +21,7 @@ export class PullRequest {
     static async getPullRequest(octokit, request) {
         var _a;
         const pull_request = (await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}', request)).data;
-        const commits = (await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}/commits', request)).data.map(commit => new Commit(commit));
+        const commits = (await octokit.paginate('GET /repos/{owner}/{repo}/pulls/{pull_number}/commits', Object.assign({ per_page: 100 }, request))).map(commit => new Commit(commit));
         return new PullRequest({
             number: pull_request.number,
             base: pull_request.base.ref,

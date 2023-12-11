@@ -1,11 +1,11 @@
 import { setOutput, debug, getInput } from '@actions/core';
-import { Octokit } from '@octokit/core';
 import { writeFile } from 'fs';
 
+import { CustomOctokit } from './octokit';
 import { PullRequest } from './pull-request';
 
 async function action(
-  octokit: Octokit,
+  octokit: CustomOctokit,
   request: { owner: string; repo: string; pull_number: number }
 ) {
   const pullRequest = await PullRequest.getPullRequest(octokit, request);

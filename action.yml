@@ -1,5 +1,3 @@
----
-
 name: Gather Pull Request Metadata
 description: Gather useful publicly available information about Pull Request and provided in easy to digest JSON format.
 
@@ -30,7 +28,5 @@ outputs:
     description: Path to file containing Pull Request metadata in JSON format. Useful when uploading as artifact.
 
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
-
-...
+  using: node20
+  main: dist/index.js

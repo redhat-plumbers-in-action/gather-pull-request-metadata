@@ -1,14 +1,12 @@
 import { getInput, setFailed } from '@actions/core';
-import { Octokit } from '@octokit/core';
 import { z } from 'zod';
 
 import '@total-typescript/ts-reset';
 
 import action from './action';
+import { getOctokit } from './octokit';
 
-const octokit = new Octokit({
-  auth: getInput('token', { required: true }),
-});
+const octokit = getOctokit(getInput('token', { required: true }));
 
 const prNumber = +getInput('pr-number', { required: true });
 const metadataFileName = getInput('metadata-file-name', { required: true });

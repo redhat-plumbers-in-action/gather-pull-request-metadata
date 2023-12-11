@@ -1,4 +1,4 @@
-import { Octokit } from '@octokit/core';
+import { CustomOctokit } from './octokit';
 import { PullRequestMetadata } from './schema';
 export declare class PullRequest {
     readonly number: PullRequestMetadata['number'];
@@ -9,7 +9,7 @@ export declare class PullRequest {
     readonly commits: PullRequestMetadata['commits'];
     private constructor();
     getMetadata(): PullRequestMetadata;
-    static getPullRequest(octokit: Octokit, request: {
+    static getPullRequest(octokit: CustomOctokit, request: {
         owner: string;
         repo: string;
         pull_number: number;
