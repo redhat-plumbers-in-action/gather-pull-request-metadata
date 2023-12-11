@@ -1,6 +1,5 @@
-import { Octokit } from '@octokit/core';
-
 import { Commit } from './commit';
+import { CustomOctokit } from './octokit';
 import { PullRequestMetadata } from './schema';
 
 export class PullRequest {
@@ -32,7 +31,7 @@ export class PullRequest {
   }
 
   static async getPullRequest(
-    octokit: Octokit,
+    octokit: CustomOctokit,
     request: { owner: string; repo: string; pull_number: number }
   ) {
     const pull_request = (
@@ -42,11 +41,14 @@ export class PullRequest {
       )
     ).data;
     const commits = (
-      await octokit.request(
+      await octokit.paginate(
         'GET /repos/{owner}/{repo}/pulls/{pull_number}/commits',
-        request
+        {
+          per_page: 100,
+          ...request,
+        }
       )
-    ).data.map(commit => new Commit(commit));
+    ).map(commit => new Commit(commit));
 
     return new PullRequest({
       number: pull_request.number,
