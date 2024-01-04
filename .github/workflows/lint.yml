@@ -1,5 +1,3 @@
----
-
 name: Linting suite
 
 on:
@@ -38,4 +36,3 @@ jobs:
       - name: ESLint
         run: yarn run lint
 
-...
