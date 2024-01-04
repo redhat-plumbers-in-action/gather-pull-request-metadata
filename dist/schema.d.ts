@@ -26,8 +26,8 @@ export declare const singleCommitMetadataSchema: z.ZodObject<{
         }[];
     }>;
 }, "strip", z.ZodTypeAny, {
-    sha: string;
     url: string;
+    sha: string;
     message: {
         title: string;
         body: string;
@@ -36,8 +36,8 @@ export declare const singleCommitMetadataSchema: z.ZodObject<{
         }[];
     };
 }, {
-    sha: string;
     url: string;
+    sha: string;
     message: {
         title: string;
         body: string;
@@ -74,8 +74,8 @@ export declare const commitMetadataSchema: z.ZodArray<z.ZodObject<{
         }[];
     }>;
 }, "strip", z.ZodTypeAny, {
-    sha: string;
     url: string;
+    sha: string;
     message: {
         title: string;
         body: string;
@@ -84,8 +84,8 @@ export declare const commitMetadataSchema: z.ZodArray<z.ZodObject<{
         }[];
     };
 }, {
-    sha: string;
     url: string;
+    sha: string;
     message: {
         title: string;
         body: string;
@@ -146,8 +146,8 @@ export declare const pullRequestMetadataSchema: z.ZodObject<{
             }[];
         }>;
     }, "strip", z.ZodTypeAny, {
-        sha: string;
         url: string;
+        sha: string;
         message: {
             title: string;
             body: string;
@@ -156,8 +156,8 @@ export declare const pullRequestMetadataSchema: z.ZodObject<{
             }[];
         };
     }, {
-        sha: string;
         url: string;
+        sha: string;
         message: {
             title: string;
             body: string;
@@ -179,8 +179,8 @@ export declare const pullRequestMetadataSchema: z.ZodObject<{
         title?: string | undefined;
     } | null;
     commits: {
-        sha: string;
         url: string;
+        sha: string;
         message: {
             title: string;
             body: string;
@@ -202,8 +202,8 @@ export declare const pullRequestMetadataSchema: z.ZodObject<{
         title?: string | undefined;
     } | null;
     commits: {
-        sha: string;
         url: string;
+        sha: string;
         message: {
             title: string;
             body: string;
