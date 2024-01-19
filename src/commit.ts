@@ -2,6 +2,7 @@ import { Endpoints } from '@octokit/types';
 import { z } from 'zod';
 
 import { SingleCommitMetadata } from './schema';
+import { escape } from './util';
 
 // subset of Endpoints['GET /repos/{owner}/{repo}/commits']['response']['data'][number]
 const commitDataSchema = z.object({
@@ -25,8 +26,8 @@ export class Commit {
     this.sha = parsedData.sha;
     this.url = parsedData.html_url;
     this.message = {
-      title: this.getTitle(parsedData.commit.message),
-      body: parsedData.commit.message,
+      title: escape(this.getTitle(parsedData.commit.message)),
+      body: escape(parsedData.commit.message),
       cherryPick: this.getCherryPicks(parsedData.commit.message),
     };
   }

@@ -28328,7 +28328,7 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
-/***/ 6043:
+/***/ 6925:
 /***/ ((__unused_webpack_module, __webpack_exports__, __nccwpck_require__) => {
 
 "use strict";
@@ -28344,7 +28344,13 @@ var core = __nccwpck_require__(2186);
 var external_fs_ = __nccwpck_require__(7147);
 // EXTERNAL MODULE: ./node_modules/zod/lib/index.mjs
 var lib = __nccwpck_require__(2300);
+;// CONCATENATED MODULE: ./src/util.ts
+function util_escape(str) {
+    return str.replace('|', '\\|');
+}
+
 ;// CONCATENATED MODULE: ./src/commit.ts
+
 
 // subset of Endpoints['GET /repos/{owner}/{repo}/commits']['response']['data'][number]
 const commitDataSchema = lib.z.object({
@@ -28360,8 +28366,8 @@ class Commit {
         this.sha = parsedData.sha;
         this.url = parsedData.html_url;
         this.message = {
-            title: this.getTitle(parsedData.commit.message),
-            body: parsedData.commit.message,
+            title: util_escape(this.getTitle(parsedData.commit.message)),
+            body: util_escape(parsedData.commit.message),
             cherryPick: this.getCherryPicks(parsedData.commit.message),
         };
     }
@@ -28457,7 +28463,7 @@ __nccwpck_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(2186);
 /* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__nccwpck_require__.n(_actions_core__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var zod__WEBPACK_IMPORTED_MODULE_3__ = __nccwpck_require__(2300);
-/* harmony import */ var _action__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(6043);
+/* harmony import */ var _action__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(6925);
 /* harmony import */ var _octokit__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(6161);
 var _a, _b;
 
