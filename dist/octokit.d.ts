@@ -1,5 +1,5 @@
 import { Octokit } from '@octokit/core';
-declare const CustomOctokit: typeof Octokit & import("@octokit/core/dist-types/types.d").Constructor<{
+declare const CustomOctokit: typeof Octokit & import("@octokit/core/dist-types/types").Constructor<{
     paginate: import("@octokit/plugin-paginate-rest").PaginateInterface;
 }>;
 export type CustomOctokit = InstanceType<typeof CustomOctokit>;
