@@ -27,7 +27,7 @@ jobs:
           echo -e "::warning::$PR_METADATA"
 
       - name: Upload artifact with gathered metadata
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Pull Request Metadata
           path: ${{ steps.Metadata.outputs.metadata-file }}
