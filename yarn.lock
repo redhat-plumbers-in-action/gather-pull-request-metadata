@@ -731,12 +731,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:18.19.14":
-  version: 18.19.14
-  resolution: "@types/node@npm:18.19.14"
+"@types/node@npm:18.19.26":
+  version: 18.19.26
+  resolution: "@types/node@npm:18.19.26"
   dependencies:
     undici-types: ~5.26.4
-  checksum: 3d42b50e649f18c6ca7044714eaeb51ba5fda463c845eeb1973bcbbfcab8e93179501fbf865e675cb0c7a5e59f7ea18eca8296b52c2455c856aa45c77ae815dc
+  checksum: d72d4e7e520206a2a05cb3e03a73696fc3bdcdc6ba5330a75cfef4818cb137b260c32dfe85e8b4ea28e8fe92f1d1497e26336c607254c5eaf47032a1b1c8bb6e
   languageName: node
   linkType: hard
 
@@ -1825,7 +1825,7 @@ __metadata:
     "@octokit/plugin-throttling": ^8.1.3
     "@octokit/types": ^12.0.0
     "@total-typescript/ts-reset": ^0.5.0
-    "@types/node": 18.19.14
+    "@types/node": 18.19.26
     "@typescript-eslint/eslint-plugin": 6.20.0
     "@typescript-eslint/parser": 6.20.0
     "@vercel/ncc": 0.38.1
