@@ -118,6 +118,7 @@ GitHub Action exposes following [outputs](https://docs.github.com/en/actions/usi
 {
   "number": 123,
   "base": "main",
+  "ref": "dbb9ff194039a1e1567cb48e7261ee1a94d1b9f0",
   "url": "https://github.com/org/repo/pull/123",
   "labels": [
     {
