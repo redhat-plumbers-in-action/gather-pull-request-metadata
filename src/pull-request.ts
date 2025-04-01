@@ -1,6 +1,7 @@
 import { Commit } from './commit';
 import { CustomOctokit } from './octokit';
-import { PullRequestMetadata } from './schema';
+import { IssueMetadata, PullRequestMetadata } from './schema';
+import { getMetadataFromMessage } from './util';
 
 export class PullRequest {
   readonly number: PullRequestMetadata['number'];
@@ -10,6 +11,7 @@ export class PullRequest {
   readonly labels: PullRequestMetadata['labels'];
   readonly milestone: PullRequestMetadata['milestone'];
   readonly commits: PullRequestMetadata['commits'];
+  readonly metadata: PullRequestMetadata['metadata'];
 
   private constructor(data: PullRequestMetadata) {
     this.number = data?.number;
@@ -19,6 +21,7 @@ export class PullRequest {
     this.labels = data?.labels;
     this.milestone = data?.milestone;
     this.commits = data?.commits;
+    this.metadata = data?.metadata;
   }
 
   getMetadata(): PullRequestMetadata {
@@ -30,6 +33,7 @@ export class PullRequest {
       labels: this.labels,
       milestone: this.milestone,
       commits: this.commits,
+      metadata: this.metadata,
     };
   }
 
@@ -53,6 +57,35 @@ export class PullRequest {
       )
     ).map(commit => new Commit(commit));
 
+    // all comments including the PR description, review comments are not included
+    const comments = [
+      (
+        await octokit.request(
+          'GET /repos/{owner}/{repo}/issues/{issue_number}',
+          {
+            owner: request.owner,
+            repo: request.repo,
+            issue_number: pull_request.number,
+          }
+        )
+      ).data.body || '',
+      ...(await octokit.paginate(
+        'GET /repos/{owner}/{repo}/issues/{issue_number}/comments',
+        {
+          owner: request.owner,
+          repo: request.repo,
+          issue_number: pull_request.number,
+          per_page: 100,
+        },
+        response => response.data.map(comment => comment.body || '')
+      )),
+    ] as string[];
+
+    const issueMetadata: IssueMetadata[] = [];
+    comments.forEach(comment => {
+      issueMetadata.push(...getMetadataFromMessage(comment));
+    });
+
     return new PullRequest({
       number: pull_request.number,
       base: pull_request.base.ref,
@@ -67,6 +100,7 @@ export class PullRequest {
       }),
       milestone: { title: pull_request.milestone?.title },
       commits,
+      metadata: issueMetadata,
     });
   }
 }

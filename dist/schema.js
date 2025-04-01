@@ -11,6 +11,7 @@ export const singleCommitMetadataSchema = z.object({
     }),
 });
 export const commitMetadataSchema = z.array(singleCommitMetadataSchema);
+export const issueMetadataSchema = z.record(z.string(), z.unknown());
 export const pullRequestMetadataSchema = z.object({
     number: z.number(),
     base: z.string(),
@@ -27,5 +28,6 @@ export const pullRequestMetadataSchema = z.object({
     })
         .nullable(),
     commits: commitMetadataSchema,
+    metadata: z.array(issueMetadataSchema),
 });
 //# sourceMappingURL=schema.js.map

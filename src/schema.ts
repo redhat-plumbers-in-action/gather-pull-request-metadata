@@ -17,8 +17,10 @@ export const singleCommitMetadataSchema = z.object({
 export type SingleCommitMetadata = z.infer<typeof singleCommitMetadataSchema>;
 
 export const commitMetadataSchema = z.array(singleCommitMetadataSchema);
-
 export type CommitMetadata = z.infer<typeof commitMetadataSchema>;
+
+export const issueMetadataSchema = z.record(z.string(), z.unknown());
+export type IssueMetadata = z.infer<typeof issueMetadataSchema>;
 
 export const pullRequestMetadataSchema = z.object({
   number: z.number(),
@@ -38,6 +40,7 @@ export const pullRequestMetadataSchema = z.object({
     })
     .nullable(),
   commits: commitMetadataSchema,
+  metadata: z.array(issueMetadataSchema),
 });
 
 export type PullRequestMetadata = z.infer<typeof pullRequestMetadataSchema>;

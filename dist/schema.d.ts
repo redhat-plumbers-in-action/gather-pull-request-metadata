@@ -95,6 +95,8 @@ export declare const commitMetadataSchema: z.ZodArray<z.ZodObject<{
     };
 }>, "many">;
 export type CommitMetadata = z.infer<typeof commitMetadataSchema>;
+export declare const issueMetadataSchema: z.ZodRecord<z.ZodString, z.ZodUnknown>;
+export type IssueMetadata = z.infer<typeof issueMetadataSchema>;
 export declare const pullRequestMetadataSchema: z.ZodObject<{
     number: z.ZodNumber;
     base: z.ZodString;
@@ -167,6 +169,7 @@ export declare const pullRequestMetadataSchema: z.ZodObject<{
             }[];
         };
     }>, "many">;
+    metadata: z.ZodArray<z.ZodRecord<z.ZodString, z.ZodUnknown>, "many">;
 }, "strip", z.ZodTypeAny, {
     number: number;
     url: string;
@@ -191,6 +194,7 @@ export declare const pullRequestMetadataSchema: z.ZodObject<{
             }[];
         };
     }[];
+    metadata: Record<string, unknown>[];
 }, {
     number: number;
     url: string;
@@ -215,5 +219,6 @@ export declare const pullRequestMetadataSchema: z.ZodObject<{
             }[];
         };
     }[];
+    metadata: Record<string, unknown>[];
 }>;
 export type PullRequestMetadata = z.infer<typeof pullRequestMetadataSchema>;

@@ -27101,8 +27101,26 @@ var external_fs_ = __nccwpck_require__(9896);
 // EXTERNAL MODULE: ./node_modules/zod/lib/index.mjs
 var lib = __nccwpck_require__(4383);
 ;// CONCATENATED MODULE: ./src/util.ts
+
 function util_escape(str) {
     return str.replace('|', '\\|');
+}
+function getMetadataFromMessage(message) {
+    const regexp = new RegExp(`^<!-- (\\S+) = (.*) -->$`, 'gm');
+    let result = [];
+    const match = [...message.matchAll(regexp)];
+    match.forEach(item => {
+        if (item && Array.isArray(item) && item.length > 2) {
+            try {
+                const data = JSON.parse(item[2]);
+                result.push({ [item[1]]: data });
+            }
+            catch (e) {
+                (0,core.warning)(`Error parsing metadata from message: ${e}`);
+            }
+        }
+    });
+    return result;
 }
 
 ;// CONCATENATED MODULE: ./src/commit.ts
@@ -27148,6 +27166,7 @@ class Commit {
 
 ;// CONCATENATED MODULE: ./src/pull-request.ts
 
+
 class PullRequest {
     constructor(data) {
         this.number = data === null || data === void 0 ? void 0 : data.number;
@@ -27157,6 +27176,7 @@ class PullRequest {
         this.labels = data === null || data === void 0 ? void 0 : data.labels;
         this.milestone = data === null || data === void 0 ? void 0 : data.milestone;
         this.commits = data === null || data === void 0 ? void 0 : data.commits;
+        this.metadata = data === null || data === void 0 ? void 0 : data.metadata;
     }
     getMetadata() {
         return {
@@ -27167,12 +27187,31 @@ class PullRequest {
             labels: this.labels,
             milestone: this.milestone,
             commits: this.commits,
+            metadata: this.metadata,
         };
     }
     static async getPullRequest(octokit, request) {
         var _a;
         const pull_request = (await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}', request)).data;
         const commits = (await octokit.paginate('GET /repos/{owner}/{repo}/pulls/{pull_number}/commits', Object.assign({ per_page: 100 }, request))).map(commit => new Commit(commit));
+        // all comments including the PR description, review comments are not included
+        const comments = [
+            (await octokit.request('GET /repos/{owner}/{repo}/issues/{issue_number}', {
+                owner: request.owner,
+                repo: request.repo,
+                issue_number: pull_request.number,
+            })).data.body || '',
+            ...(await octokit.paginate('GET /repos/{owner}/{repo}/issues/{issue_number}/comments', {
+                owner: request.owner,
+                repo: request.repo,
+                issue_number: pull_request.number,
+                per_page: 100,
+            }, response => response.data.map(comment => comment.body || ''))),
+        ];
+        const issueMetadata = [];
+        comments.forEach(comment => {
+            issueMetadata.push(...getMetadataFromMessage(comment));
+        });
         return new PullRequest({
             number: pull_request.number,
             base: pull_request.base.ref,
@@ -27187,6 +27226,7 @@ class PullRequest {
             }),
             milestone: { title: (_a = pull_request.milestone) === null || _a === void 0 ? void 0 : _a.title },
             commits,
+            metadata: issueMetadata,
         });
     }
 }
