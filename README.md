@@ -144,9 +144,20 @@ GitHub Action exposes following [outputs](https://docs.github.com/en/actions/usi
         ]
       }
     }
-  ]
+  ],
+  "metadata": [
+    {
+      "id": {
+        "key": "value"
+      }
+    }
+  ],
 }
 ```
+
+> [!NOTE]
+>
+> The `metadata` object holds all [issue-metadata](https://github.com/redhat-plumbers-in-action/issue-metadata) objects from the Pull Request comments. Issue-metadata have the following format: `<!-- <id> = {"key":"value"} -->`.
 
 ### metadata-file
 
