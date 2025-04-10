@@ -60,14 +60,14 @@ jobs:
 
     steps:
       - name: Repository checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - id: Metadata
         name: Gather Pull Request Metadata
         uses: redhat-plumbers-in-action/gather-pull-request-metadata@v1
 
       - name: Upload artifact with gathered metadata
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Pull Request Metadata
           path: ${{ steps.Metadata.outputs.metadata-file }}
