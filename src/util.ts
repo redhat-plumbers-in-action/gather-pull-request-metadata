@@ -2,7 +2,7 @@ import { warning } from '@actions/core';
 import { IssueMetadata } from './schema';
 
 export function escape(str: string): string {
-  return str.replace('|', '\\|');
+  return str.replace(/\|/g, '\\|');
 }
 
 export function getMetadataFromMessage(message: string) {

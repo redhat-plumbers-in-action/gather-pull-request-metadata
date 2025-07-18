@@ -27103,7 +27103,7 @@ var lib = __nccwpck_require__(4383);
 ;// CONCATENATED MODULE: ./src/util.ts
 
 function util_escape(str) {
-    return str.replace('|', '\\|');
+    return str.replace(/\|/g, '\\|');
 }
 function getMetadataFromMessage(message) {
     const regexp = new RegExp(`^<!-- (\\S+) = (.*) -->$`, 'gm');
@@ -27865,7 +27865,7 @@ class RequestError extends Error {
 
 
 // pkg/dist-src/version.js
-var dist_bundle_VERSION = "0.0.0-development";
+var dist_bundle_VERSION = "9.2.4";
 
 // pkg/dist-src/defaults.js
 var defaults_default = {
@@ -28236,7 +28236,7 @@ var createTokenAuth = function createTokenAuth2(token) {
 
 
 ;// CONCATENATED MODULE: ./node_modules/@octokit/core/dist-src/version.js
-const version_VERSION = "6.1.4";
+const version_VERSION = "6.1.5";
 
 
 ;// CONCATENATED MODULE: ./node_modules/@octokit/core/dist-src/index.js

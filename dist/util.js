@@ -1,6 +1,6 @@
 import { warning } from '@actions/core';
 export function escape(str) {
-    return str.replace('|', '\\|');
+    return str.replace(/\|/g, '\\|');
 }
 export function getMetadataFromMessage(message) {
     const regexp = new RegExp(`^<!-- (\\S+) = (.*) -->$`, 'gm');
