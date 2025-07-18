@@ -6,6 +6,8 @@ describe('Test utility functions', () => {
   test('escape() can escape string', () => {
     expect(escape('abc|def')).toBe('abc\\|def');
     expect(escape('abcdef')).toBe('abcdef');
+    expect(escape('abc || def')).toBe('abc \\|\\| def');
+    expect(escape('abc||def')).toBe('abc\\|\\|def');
   });
 
   test('getMetadataFromMessage()', () => {
