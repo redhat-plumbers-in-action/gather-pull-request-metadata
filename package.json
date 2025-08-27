@@ -30,7 +30,7 @@
     "@octokit/core": "7.0.3",
     "@octokit/plugin-paginate-rest": "13.1.1",
     "@octokit/plugin-throttling": "11.0.1",
-    "zod": "4.0.5"
+    "zod": "4.1.4"
   },
   "devDependencies": {
     "@actions/github": "6.0.1",
