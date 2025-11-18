@@ -27,9 +27,9 @@
   "type": "module",
   "dependencies": {
     "@actions/core": "1.11.1",
-    "@octokit/core": "7.0.3",
-    "@octokit/plugin-paginate-rest": "13.1.1",
-    "@octokit/plugin-throttling": "11.0.1",
+    "@octokit/core": "7.0.6",
+    "@octokit/plugin-paginate-rest": "13.2.1",
+    "@octokit/plugin-throttling": "11.0.3",
     "zod": "4.0.5"
   },
   "devDependencies": {
