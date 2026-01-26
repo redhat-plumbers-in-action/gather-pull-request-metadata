@@ -8,6 +8,9 @@ export declare const singleCommitMetadataSchema: z.ZodObject<{
         cherryPick: z.ZodArray<z.ZodObject<{
             sha: z.ZodString;
         }, z.core.$strip>>;
+        revert: z.ZodArray<z.ZodObject<{
+            sha: z.ZodString;
+        }, z.core.$strip>>;
     }, z.core.$strip>;
 }, z.core.$strip>;
 export type SingleCommitMetadata = z.infer<typeof singleCommitMetadataSchema>;
@@ -18,6 +21,9 @@ export declare const commitMetadataSchema: z.ZodArray<z.ZodObject<{
         title: z.ZodString;
         body: z.ZodString;
         cherryPick: z.ZodArray<z.ZodObject<{
+            sha: z.ZodString;
+        }, z.core.$strip>>;
+        revert: z.ZodArray<z.ZodObject<{
             sha: z.ZodString;
         }, z.core.$strip>>;
     }, z.core.$strip>;
@@ -45,6 +51,9 @@ export declare const pullRequestMetadataSchema: z.ZodObject<{
             title: z.ZodString;
             body: z.ZodString;
             cherryPick: z.ZodArray<z.ZodObject<{
+                sha: z.ZodString;
+            }, z.core.$strip>>;
+            revert: z.ZodArray<z.ZodObject<{
                 sha: z.ZodString;
             }, z.core.$strip>>;
         }, z.core.$strip>;

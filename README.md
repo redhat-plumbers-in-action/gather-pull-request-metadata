@@ -139,10 +139,15 @@ GitHub Action exposes following [outputs](https://docs.github.com/en/actions/usi
       "url": "https://github.com/org/repo/commit/dbb9ff194039a1e1567cb48e7261ee1a94d1b9f0",
       "message": {
         "title": "test: add tests for commit functionality",
-        "body": "test: add tests for commit functionality\n\n(cherry picked from commit f921f712da87c6a770de94138595a83c13d778b5)",
+        "body": "test: add tests for commit functionality\n\n(cherry picked from commit f921f712da87c6a770de94138595a83c13d778b5)\n\nThis reverts commit 1234567890123456789012345678901234567890.",
         "cherryPick": [
           {
             "sha": "f921f712da87c6a770de94138595a83c13d778b5",
+          }
+        ],
+        "revert": [
+          {
+            "sha": "1234567890123456789012345678901234567890",
           }
         ]
       }

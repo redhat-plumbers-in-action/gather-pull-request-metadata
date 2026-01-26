@@ -28,4 +28,9 @@ describe('Commit Object', () => {
         commitItem.getCherryPicks(commitItem.message.body)
       ).toMatchSnapshot();
     }));
+
+  it<ICommitTestContext>('getReverts()', context =>
+    context.commits.map(commitItem => {
+      expect(commitItem.getReverts(commitItem.message.body)).toMatchSnapshot();
+    }));
 });
