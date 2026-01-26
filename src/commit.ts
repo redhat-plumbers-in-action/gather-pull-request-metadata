@@ -29,6 +29,7 @@ export class Commit {
       title: escape(this.getTitle(parsedData.commit.message)),
       body: escape(parsedData.commit.message),
       cherryPick: this.getCherryPicks(parsedData.commit.message),
+      revert: this.getReverts(parsedData.commit.message),
     };
   }
 
@@ -46,6 +47,17 @@ export class Commit {
     message: string
   ): SingleCommitMetadata['message']['cherryPick'] {
     const regexp = /\n\(cherry picked from commit (\b[0-9a-f]{5,40}\b)\) *\n?/g;
+
+    const matches = [...message.matchAll(regexp)];
+    return Array.isArray(matches)
+      ? matches.map(match => {
+          return { sha: match[1].toString() };
+        })
+      : [];
+  }
+
+  getReverts(message: string): SingleCommitMetadata['message']['revert'] {
+    const regexp = /\nThis reverts commit (\b[0-9a-f]{5,40}\b)\. *\n?/g;
 
     const matches = [...message.matchAll(regexp)];
     return Array.isArray(matches)

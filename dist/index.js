@@ -27395,6 +27395,7 @@ class Commit {
             title: util_escape(this.getTitle(parsedData.commit.message)),
             body: util_escape(parsedData.commit.message),
             cherryPick: this.getCherryPicks(parsedData.commit.message),
+            revert: this.getReverts(parsedData.commit.message),
         };
     }
     /**
@@ -27407,6 +27408,15 @@ class Commit {
     }
     getCherryPicks(message) {
         const regexp = /\n\(cherry picked from commit (\b[0-9a-f]{5,40}\b)\) *\n?/g;
+        const matches = [...message.matchAll(regexp)];
+        return Array.isArray(matches)
+            ? matches.map(match => {
+                return { sha: match[1].toString() };
+            })
+            : [];
+    }
+    getReverts(message) {
+        const regexp = /\nThis reverts commit (\b[0-9a-f]{5,40}\b)\. *\n?/g;
         const matches = [...message.matchAll(regexp)];
         return Array.isArray(matches)
             ? matches.map(match => {

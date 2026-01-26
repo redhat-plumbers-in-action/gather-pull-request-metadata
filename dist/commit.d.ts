@@ -10,4 +10,5 @@ export declare class Commit {
      */
     getTitle(message: string): string;
     getCherryPicks(message: string): SingleCommitMetadata['message']['cherryPick'];
+    getReverts(message: string): SingleCommitMetadata['message']['revert'];
 }

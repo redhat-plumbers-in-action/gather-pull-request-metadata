@@ -26,7 +26,10 @@ description ...
 
 (cherry picked from commit 12345)
 
-(cherry picked from commit 1234567890123456789012345678901234567890)`,
+This reverts commit 12345.
+
+(cherry picked from commit 1234567890123456789012345678901234567890)
+This reverts commit 1234567890123456789012345678901234567890.`,
       },
     } as Endpoints['GET /repos/{owner}/{repo}/commits']['response']['data'][number]),
   ],

@@ -8,6 +8,9 @@ export const singleCommitMetadataSchema = z.object({
         cherryPick: z.array(z.object({
             sha: z.string(),
         })),
+        revert: z.array(z.object({
+            sha: z.string(),
+        })),
     }),
 });
 export const commitMetadataSchema = z.array(singleCommitMetadataSchema);
