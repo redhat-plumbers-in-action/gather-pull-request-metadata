@@ -33,7 +33,7 @@
     "zod": "4.3.6"
   },
   "devDependencies": {
-    "@actions/github": "7.0.0",
+    "@actions/github": "9.0.0",
     "@octokit/types": "16.0.0",
     "@total-typescript/ts-reset": "0.6.1",
     "@types/node": "25.0.10",
