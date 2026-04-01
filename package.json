@@ -23,7 +23,7 @@
     "update-snapshots": "vitest run --update",
     "all": "yarn run build && yarn run format && yarn run package && yarn test"
   },
-  "packageManager": "yarn@4.12.0",
+  "packageManager": "yarn@4.13.0",
   "type": "module",
   "dependencies": {
     "@actions/core": "2.0.2",
