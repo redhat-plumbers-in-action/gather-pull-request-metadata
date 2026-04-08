@@ -30,9 +30,6 @@
 [codecov]: https://codecov.io/gh/redhat-plumbers-in-action/gather-pull-request-metadata
 [codecov-status]: https://codecov.io/gh/redhat-plumbers-in-action/gather-pull-request-metadata/branch/main/graph/badge.svg
 
-[mergify]: https://mergify.com
-[mergify-status]: https://img.shields.io/endpoint.svg?url=https://api.mergify.com/v1/badges/redhat-plumbers-in-action/gather-pull-request-metadata&style=flat
-
 <!-- -->
 
 ## Usage
@@ -60,14 +57,14 @@ jobs:
 
     steps:
       - name: Repository checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - id: Metadata
         name: Gather Pull Request Metadata
         uses: redhat-plumbers-in-action/gather-pull-request-metadata@v1
 
       - name: Upload artifact with gathered metadata
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: Pull Request Metadata
           path: ${{ steps.Metadata.outputs.metadata-file }}

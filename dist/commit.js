@@ -9,6 +9,9 @@ const commitDataSchema = z.object({
     }),
 });
 export class Commit {
+    sha;
+    url;
+    message;
     constructor(data) {
         const parsedData = commitDataSchema.parse(data);
         this.sha = parsedData.sha;

@@ -1,15 +1,23 @@
 import { Commit } from './commit';
 import { getMetadataFromMessage } from './util';
 export class PullRequest {
+    number;
+    base;
+    ref;
+    url;
+    labels;
+    milestone;
+    commits;
+    metadata;
     constructor(data) {
-        this.number = data === null || data === void 0 ? void 0 : data.number;
-        this.base = data === null || data === void 0 ? void 0 : data.base;
-        this.ref = data === null || data === void 0 ? void 0 : data.ref;
-        this.url = data === null || data === void 0 ? void 0 : data.url;
-        this.labels = data === null || data === void 0 ? void 0 : data.labels;
-        this.milestone = data === null || data === void 0 ? void 0 : data.milestone;
-        this.commits = data === null || data === void 0 ? void 0 : data.commits;
-        this.metadata = data === null || data === void 0 ? void 0 : data.metadata;
+        this.number = data?.number;
+        this.base = data?.base;
+        this.ref = data?.ref;
+        this.url = data?.url;
+        this.labels = data?.labels;
+        this.milestone = data?.milestone;
+        this.commits = data?.commits;
+        this.metadata = data?.metadata;
     }
     getMetadata() {
         return {
@@ -24,9 +32,11 @@ export class PullRequest {
         };
     }
     static async getPullRequest(octokit, request) {
-        var _a;
         const pull_request = (await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}', request)).data;
-        const commits = (await octokit.paginate('GET /repos/{owner}/{repo}/pulls/{pull_number}/commits', Object.assign({ per_page: 100 }, request))).map(commit => new Commit(commit));
+        const commits = (await octokit.paginate('GET /repos/{owner}/{repo}/pulls/{pull_number}/commits', {
+            per_page: 100,
+            ...request,
+        })).map(commit => new Commit(commit));
         // all comments including the PR description, review comments are not included
         const comments = [
             (await octokit.request('GET /repos/{owner}/{repo}/issues/{issue_number}', {
@@ -57,7 +67,7 @@ export class PullRequest {
                     description: label.description,
                 };
             }),
-            milestone: { title: (_a = pull_request.milestone) === null || _a === void 0 ? void 0 : _a.title },
+            milestone: { title: pull_request.milestone?.title },
             commits,
             metadata: issueMetadata,
         });
