@@ -28,5 +28,5 @@ outputs:
     description: Path to file containing Pull Request metadata in JSON format. Useful when uploading as artifact.
 
 runs:
-  using: node20
+  using: node24
   main: dist/index.js
