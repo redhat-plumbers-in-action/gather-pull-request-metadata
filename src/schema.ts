@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const singleCommitMetadataSchema = z.object({
   sha: z.string(),
-  url: z.string().url(),
+  url: z.url(),
   message: z.object({
     title: z.string(),
     body: z.string(),
@@ -29,9 +29,11 @@ export type IssueMetadata = z.infer<typeof issueMetadataSchema>;
 
 export const pullRequestMetadataSchema = z.object({
   number: z.number(),
+  title: z.string(),
+  draft: z.boolean(),
   base: z.string(),
   ref: z.string(),
-  url: z.string().url(),
+  url: z.url(),
   labels: z.array(
     z.object({
       id: z.number(),

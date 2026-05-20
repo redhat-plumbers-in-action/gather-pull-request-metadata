@@ -117,6 +117,8 @@ GitHub Action exposes following [outputs](https://docs.github.com/en/actions/usi
 ```json
 {
   "number": 123,
+  "title": "[WIP] feat: add new feature",
+  "draft": true,
   "base": "main",
   "ref": "dbb9ff194039a1e1567cb48e7261ee1a94d1b9f0",
   "url": "https://github.com/org/repo/pull/123",
@@ -159,6 +161,10 @@ GitHub Action exposes following [outputs](https://docs.github.com/en/actions/usi
   ],
 }
 ```
+
+> [!NOTE]
+>
+> The `draft` field is `true` when the Pull Request is marked as a draft via GitHub or when its title contains `[WIP]` (case insensitive).
 
 > [!NOTE]
 >
