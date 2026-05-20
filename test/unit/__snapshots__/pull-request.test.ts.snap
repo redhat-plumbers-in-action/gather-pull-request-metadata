@@ -1,0 +1,108 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Pull Request Object > getMetadata() 1`] = `
+{
+  "base": "main",
+  "commits": [],
+  "draft": false,
+  "labels": [
+    {
+      "description": "New feature",
+      "id": 1,
+      "name": "enhancement",
+    },
+  ],
+  "metadata": [],
+  "milestone": {
+    "title": "v1.0",
+  },
+  "number": 1,
+  "ref": "main",
+  "title": "feat: add new feature",
+  "url": "https://github.com/org/repo/pull/1",
+}
+`;
+
+exports[`Pull Request Object > getMetadata() 2`] = `
+{
+  "base": "main",
+  "commits": [],
+  "draft": true,
+  "labels": [
+    {
+      "description": "New feature",
+      "id": 1,
+      "name": "enhancement",
+    },
+  ],
+  "metadata": [],
+  "milestone": {
+    "title": "v1.0",
+  },
+  "number": 2,
+  "ref": "main",
+  "title": "fix: resolve crash on startup",
+  "url": "https://github.com/org/repo/pull/2",
+}
+`;
+
+exports[`Pull Request Object > getMetadata() 3`] = `
+{
+  "base": "main",
+  "commits": [],
+  "draft": true,
+  "labels": [
+    {
+      "description": "New feature",
+      "id": 1,
+      "name": "enhancement",
+    },
+  ],
+  "metadata": [],
+  "milestone": {
+    "title": "v1.0",
+  },
+  "number": 3,
+  "ref": "main",
+  "title": "[WIP] refactor: restructure modules",
+  "url": "https://github.com/org/repo/pull/3",
+}
+`;
+
+exports[`Pull Request Object > getMetadata() 4`] = `
+{
+  "base": "main",
+  "commits": [],
+  "draft": true,
+  "labels": [
+    {
+      "description": "New feature",
+      "id": 1,
+      "name": "enhancement",
+    },
+  ],
+  "metadata": [],
+  "milestone": {
+    "title": "v1.0",
+  },
+  "number": 4,
+  "ref": "main",
+  "title": "[wip] ci: update pipeline",
+  "url": "https://github.com/org/repo/pull/4",
+}
+`;
+
+exports[`Pull Request Object > getMetadata() 5`] = `
+{
+  "base": "main",
+  "commits": [],
+  "draft": false,
+  "labels": [],
+  "metadata": [],
+  "milestone": null,
+  "number": 5,
+  "ref": "main",
+  "title": "docs: update README",
+  "url": "https://github.com/org/repo/pull/5",
+}
+`;
