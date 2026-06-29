@@ -5,8 +5,6 @@ import { getMetadataFromMessage } from './util';
 
 export class PullRequest {
   readonly number: PullRequestMetadata['number'];
-  readonly title: PullRequestMetadata['title'];
-  readonly draft: PullRequestMetadata['draft'];
   readonly base: PullRequestMetadata['base'];
   readonly ref: PullRequestMetadata['ref'];
   readonly url: PullRequestMetadata['url'];
@@ -17,8 +15,6 @@ export class PullRequest {
 
   private constructor(data: PullRequestMetadata) {
     this.number = data?.number;
-    this.title = data?.title;
-    this.draft = data?.draft;
     this.base = data?.base;
     this.ref = data?.ref;
     this.url = data?.url;
@@ -31,8 +27,6 @@ export class PullRequest {
   getMetadata(): PullRequestMetadata {
     return {
       number: this.number,
-      title: this.title,
-      draft: this.draft,
       base: this.base,
       ref: this.base,
       url: this.url,
@@ -92,13 +86,8 @@ export class PullRequest {
       issueMetadata.push(...getMetadataFromMessage(comment));
     });
 
-    const title = pull_request.title;
-    const draft = pull_request.draft === true || /\[WIP\]/i.test(title);
-
     return new PullRequest({
       number: pull_request.number,
-      title,
-      draft,
       base: pull_request.base.ref,
       ref: pull_request.head.sha,
       url: pull_request.html_url,

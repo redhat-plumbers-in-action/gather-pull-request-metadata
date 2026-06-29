@@ -35174,8 +35174,6 @@ var Commit = class {
 // src/pull-request.ts
 var PullRequest = class _PullRequest {
   number;
-  title;
-  draft;
   base;
   ref;
   url;
@@ -35185,8 +35183,6 @@ var PullRequest = class _PullRequest {
   metadata;
   constructor(data) {
     this.number = data?.number;
-    this.title = data?.title;
-    this.draft = data?.draft;
     this.base = data?.base;
     this.ref = data?.ref;
     this.url = data?.url;
@@ -35198,8 +35194,6 @@ var PullRequest = class _PullRequest {
   getMetadata() {
     return {
       number: this.number,
-      title: this.title,
-      draft: this.draft,
       base: this.base,
       ref: this.base,
       url: this.url,
@@ -35245,12 +35239,8 @@ var PullRequest = class _PullRequest {
     comments.forEach((comment) => {
       issueMetadata.push(...getMetadataFromMessage(comment));
     });
-    const title = pull_request.title;
-    const draft = pull_request.draft === true || /\[WIP\]/i.test(title);
     return new _PullRequest({
       number: pull_request.number,
-      title,
-      draft,
       base: pull_request.base.ref,
       ref: pull_request.head.sha,
       url: pull_request.html_url,
